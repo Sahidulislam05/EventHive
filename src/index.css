@@ -1,2 +1,26 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+
+  /* Brand */
+  --color-primary: #9ee86e;      /* Main brand / Buttons */
+  --color-secondary: #000000;    /* Secondary / Strong contrast */
+  --color-accent: #163300;       /* Accent / Highlight */
+
+  /* Backgrounds */
+  --color-base-100: #ffffff;     /* Page background */
+  --color-base-200: #f6fef2;     /* Card background (soft green tint) */
+  --color-base-300: #d1fae5;     /* Borders / Dividers */
+
+  /* Text */
+  --color-base-content: #333333; /* Main text */
+
+  /* Status */
+  --color-info: #60a5fa;         /* Info */
+  --color-success: #9ee86e;      /* Success */
+  --color-warning: #facc15;      /* Warning */
+  --color-error: #ef4444;        /* Error */
+}
+
