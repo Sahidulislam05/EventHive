@@ -1,8 +1,16 @@
+import { Outlet } from "react-router";
+import Navbar from "./componets/Shared/Navbar";
+import Footer from "./componets/Shared/Footer";
+
 function App() {
   return (
-    <>
-      <h1>Event Hive Run</h1>
-    </>
+    <div>
+      <Navbar />
+      <div className="min-h-[calc(100vh-300px)]">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
   );
 }
 

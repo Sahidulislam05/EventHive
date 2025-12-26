@@ -1,11 +1,8 @@
 import React from 'react';
+import ErrorMessage from '../componets/Shared/ErrorMessage';
 
 const NotFound = () => {
-      return (
-            <div>
-                  <h1>not found</h1>
-            </div>
-      );
+      return <ErrorMessage message="Page Not Found" />;
 };
 
 export default NotFound;
