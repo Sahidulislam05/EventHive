@@ -1,31 +1,46 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router';
-import useAuth from '../../hooks/useAuth';
-import UseAxiosSecure from '../../hooks/UseAxiosSecure';
+import React from "react";
+import { useLocation, useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const axiosSecure = UseAxiosSecure();
 
   const handleGoogleSignIn = () => {
     googleLogin()
-      .then(result => {
+      .then((result) => {
         console.log(result.user);
-        // create user in the database
+        // create user in the database - match the same fields as Register.jsx
         const userInfo = {
+          name: result.user.displayName,
           email: result.user.email,
-          displayName: result.user.displayName,
           photoURL: result.user.photoURL,
+          role: "user",
+          status: "verified",
         };
 
-        axiosSecure.post('/users', userInfo).then(res => {
-          console.log('user data has been stored', res.data);
-          navigate(location.state || '/');
-        });
+        axios
+          .post("https://event-hive-server-team.vercel.app/users", userInfo, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            console.log("user data has been stored", res.data);
+            navigate(location.state || "/");
+          })
+          .catch((err) => {
+            console.log(
+              "Error saving user:",
+              err.response?.data || err.message
+            );
+            // Still navigate even if user already exists
+            navigate(location.state || "/");
+          });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
