@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link, NavLink, useNavigate } from 'react-router';
-import useAuth from '../../hooks/useAuth';
-import ThemeToggle from './ThemeToggle';
-import Logo from './logo';
+import React from "react";
+import { Link, NavLink, useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
+import ThemeToggle from "./ThemeToggle";
+import Logo from "./logo";
 
 const Navbar = () => {
   const { user, signout } = useAuth();
@@ -11,9 +11,9 @@ const Navbar = () => {
   const handleSignOut = () => {
     signout()
       .then(() => {
-        navigate('login');
+        navigate("login");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -26,8 +26,8 @@ const Navbar = () => {
           className={({ isActive }) =>
             `px-6 py-2 rounded-full transition-all duration-300 font-medium ${
               isActive
-                ? 'bg-primary text-primary-content font-bold'
-                : 'hover:bg-primary hover:text-primary-content text-base-content/80'
+                ? "bg-primary text-primary-content font-bold"
+                : "hover:bg-primary hover:text-primary-content text-base-content/80"
             }`
           }
         >
@@ -40,8 +40,8 @@ const Navbar = () => {
           className={({ isActive }) =>
             `px-6 py-2 rounded-full transition-all duration-300 font-medium ${
               isActive
-                ? 'bg-primary text-primary-content font-bold'
-                : 'hover:bg-primary hover:text-primary-content text-base-content/80'
+                ? "bg-primary text-primary-content font-bold"
+                : "hover:bg-primary hover:text-primary-content text-base-content/80"
             }`
           }
         >
@@ -119,11 +119,6 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 gap-2">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          {/* ahsan */}
-          <div className='mr-6'>
-            <ThemeToggle></ThemeToggle>
-          </div>
-
           {user ? (
             <div className="dropdown dropdown-end">
               <div
@@ -136,14 +131,14 @@ const Navbar = () => {
                     alt="User Avatar"
                     src={
                       user?.photoURL ||
-                      'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
+                      "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
                     }
                   />
                 </div>
               </div>
               <ul
                 tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-2xl w-52 border border-base-200"
+                className="mt-3 z-1 p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-2xl w-52 border border-base-200"
               >
                 <li>
                   <Link to="/dashboard" className="justify-between">
@@ -158,18 +153,31 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <Link
+              <NavLink
                 to="/login"
-                className="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:bg-primary hover:text-primary-content text-base-content/80"
+                className={({ isActive }) =>
+                  `px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                    isActive
+                      ? "bg-primary text-primary-content"
+                      : "hover:bg-primary hover:text-primary-content text-base-content/80"
+                  }`
+                }
               >
                 Login
-              </Link>
-              <Link
+              </NavLink>
+
+              <NavLink
                 to="/register"
-                className="btn btn-primary btn-sm rounded-full text-primary-content px-6 font-bold h-10 min-h-[2.5rem]"
+                className={({ isActive }) =>
+                  `btn btn-sm rounded-full px-6 font-bold h-10 min-h-10 transition-all ${
+                    isActive
+                      ? "btn-primary"
+                      : "bg-primary/90 text-primary-content hover:bg-primary"
+                  }`
+                }
               >
                 Register
-              </Link>
+              </NavLink>
             </div>
           )}
         </div>
