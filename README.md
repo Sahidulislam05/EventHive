@@ -6,7 +6,7 @@ EventHive is a full-stack event management platform that connects event organize
 
 
 ## 🌐 Live Links
-- **Client Application:** [URL]()
+- **Client Application:** [https://event-hive-bd.vercel.app](https://event-hive-bd.vercel.app)
 - **Server API:** [https://github.com/Sahidulislam05/Event-Hive-API](https://github.com/Sahidulislam05/Event-Hive-API)
 
 ---
