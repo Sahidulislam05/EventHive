@@ -12,16 +12,13 @@ const UseAxiosSecure = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // intercept request
     const reqInterceptor = axiosSecure.interceptors.request.use((config) => {
       config.headers.Authorization = `Bearer ${user?.accessToken}`;
       return config;
     });
 
-    // interceptor response
     const resInterceptor = axiosSecure.interceptors.response.use(
       (response) => {
-        // console.log("Response from:", response.config.url, response.status);
         return response;
       },
       (error) => {
@@ -31,7 +28,7 @@ const UseAxiosSecure = () => {
 
         const statusCode = error.response?.status;
         if (statusCode === 401 || statusCode === 403) {
-          console.log("🚪 Unauthorized - logging out");
+          console.log("Unauthorized - logging out");
           logOut().then(() => {
             navigate("/login");
           });

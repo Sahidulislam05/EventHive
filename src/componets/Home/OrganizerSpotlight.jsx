@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Heading from "../Shared/heading/Heading";
 import Paragraph from "../Shared/heading/Paragraph";
 
@@ -38,10 +39,29 @@ const OrganizerSpotlight = () => {
     },
   ];
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.2,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
     <section className="py-15 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="inline-block px-4 py-1.5 rounded-full border border-gray-200 bg-white text-sm font-medium text-gray-600 mb-6 shadow-sm">
             Organizer Spotlight
           </div>
@@ -51,12 +71,18 @@ const OrganizerSpotlight = () => {
           <Paragraph className="text-gray-500 text-lg">
             Stay updated with our latest articles, tips, and industry trends
           </Paragraph>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {organizers.slice(0, 3).map((organizer, index) => (
-            <div
+            <motion.div
               key={organizer.id}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ y: -10, scale: 1.02 }}
               className="card bg-white border border-gray-200 rounded-[2rem] p-6 hover:shadow-lg hover:border-gray-300 transition-all duration-300 group"
             >
               <div className="h-56 w-full rounded-[1.5rem] overflow-hidden mb-6 bg-gray-100">
@@ -74,7 +100,7 @@ const OrganizerSpotlight = () => {
               <p className="text-gray-500 text-sm leading-relaxed">
                 {organizer.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

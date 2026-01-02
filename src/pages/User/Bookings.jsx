@@ -9,9 +9,6 @@ const Bookings = () => {
   const { user } = useAuth();
   const axiosSecure = UseAxiosSecure();
 
-  // =======================
-  // FETCH CONFIRMED BOOKINGS
-  // =======================
   const {
     data: bookings = [],
     refetch,
@@ -25,9 +22,9 @@ const Bookings = () => {
     },
   });
 
-  // =======================
-  // CANCEL BOOKING
-  // =======================
+  console.log(bookings)
+
+
   const handleCancel = (id) => {
     Swal.fire({
       title: "Cancel Booking?",

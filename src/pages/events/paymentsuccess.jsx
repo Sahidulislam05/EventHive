@@ -89,7 +89,7 @@ const PaymentSuccess = () => {
     );
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 mt-[100px]">
+    <div className="max-w-4xl mx-auto px-4 my-12 mt-[100px]">
       <div className="bg-white border rounded-2xl p-8 shadow-md">
         <h1 className="text-2xl font-bold text-green-600 mb-4">
           Payment Successful

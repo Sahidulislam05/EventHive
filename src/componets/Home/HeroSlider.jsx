@@ -9,7 +9,7 @@ const HeroSlider = () => {
     {
       id: 1,
       image:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
+        "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg",
       title: "Discover Amazing Events",
       description:
         "Join the community of event enthusiasts and experience the best events in your city",
@@ -19,7 +19,7 @@ const HeroSlider = () => {
     {
       id: 2,
       image:
-        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2074&auto=format&fit=crop",
+        "https://images.pexels.com/photos/29253467/pexels-photo-29253467.jpeg",
       title: "Host Your Own Event",
       description:
         "Bring your ideas to life and reach a wider audience with our powerful platform",
@@ -29,12 +29,12 @@ const HeroSlider = () => {
     {
       id: 3,
       image:
-        "https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?q=80&w=2070&auto=format&fit=crop",
+        "https://images.pexels.com/photos/167478/pexels-photo-167478.jpeg",
       title: "Connect with Organizers",
       description:
         "Follow top organizers and never miss out on their latest events",
-      buttonText: "See Organizers",
-      buttonLink: "/organizers",
+      buttonText: "Get Started",
+      buttonLink: "/register",
     },
   ];
 

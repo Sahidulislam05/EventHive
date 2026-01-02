@@ -7,14 +7,12 @@ import {
   BarChart3,
 } from "lucide-react";
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
+  PieChart,
+  Pie,
   Tooltip,
   ResponsiveContainer,
   Cell,
+  Legend,
 } from "recharts";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 import Loading from "../../componets/Shared/Loading";
@@ -22,7 +20,6 @@ import Loading from "../../componets/Shared/Loading";
 const AdminStats = () => {
   const axiosSecure = UseAxiosSecure();
 
-  // 1. Fetch all users
   const { data: users = [], isLoading: usersLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -31,7 +28,6 @@ const AdminStats = () => {
     },
   });
 
-  // 2. Fetch all events
   const { data: events = [], isLoading: eventsLoading } = useQuery({
     queryKey: ["events"],
     queryFn: async () => {
@@ -40,13 +36,11 @@ const AdminStats = () => {
     },
   });
 
-  // 3. Calculate Revenue (Optional: Assuming events have 'price')
   const totalRevenue = events.reduce(
     (total, event) => total + Number(event.price || 0),
     0
   );
 
-  // Loading State
   if (usersLoading || eventsLoading) {
     return <Loading />;
   }
@@ -69,26 +63,27 @@ const AdminStats = () => {
     },
   ];
 
-  // Chart data
   const chartData = [
     {
       name: "Users",
       value: users.length,
+      displayValue: users.length,
       color: "#a3e635",
     },
     {
       name: "Events",
       value: events.length,
+      displayValue: events.length,
       color: "#2dd4bf",
     },
     {
-      name: "Revenue",
-      value: totalRevenue,
+      name: "Revenue (in hundreds)",
+      value: Math.round(totalRevenue / 100), 
+      displayValue: `Tk ${totalRevenue}`,
       color: "#fbbf24",
     },
   ];
 
-  // Custom tooltip for chart
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -97,9 +92,7 @@ const AdminStats = () => {
             {payload[0].payload.name}
           </p>
           <p className="text-lg font-black text-gray-900">
-            {payload[0].payload.name === "Revenue"
-              ? `Tk ${payload[0].value}`
-              : payload[0].value}
+            {payload[0].payload.displayValue}
           </p>
         </div>
       );
@@ -109,9 +102,7 @@ const AdminStats = () => {
 
   return (
     <div className="space-y-8">
-      {/* Header Section */}
       <div className="relative bg-gradient-to-br from-gray-50 via-lime-50/30 to-gray-50 p-8 rounded-3xl border border-gray-200 overflow-hidden">
-        {/* Background decoration */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-lime-400/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-400/5 rounded-full blur-3xl"></div>
 
@@ -183,31 +174,38 @@ const AdminStats = () => {
           </div>
         </div>
 
-        <ResponsiveContainer width="100%" height={350}>
-          <BarChart
-            data={chartData}
-            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-            <XAxis
-              dataKey="name"
-              tick={{ fill: "#6b7280", fontSize: 12, fontWeight: 600 }}
-              axisLine={{ stroke: "#e5e7eb" }}
-            />
-            <YAxis
-              tick={{ fill: "#6b7280", fontSize: 12, fontWeight: 600 }}
-              axisLine={{ stroke: "#e5e7eb" }}
-            />
-            <Tooltip
-              content={<CustomTooltip />}
-              cursor={{ fill: "rgba(163, 230, 53, 0.1)" }}
-            />
-            <Bar dataKey="value" radius={[12, 12, 0, 0]} barSize={80}>
+        <ResponsiveContainer width="100%" height={400}>
+          <PieChart>
+            <Pie
+              data={chartData}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={({ name, percent }) =>
+                `${name}: ${(percent * 100).toFixed(0)}%`
+              }
+              outerRadius={120}
+              innerRadius={60}
+              fill="#8884d8"
+              dataKey="value"
+              paddingAngle={5}
+            >
               {chartData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
-            </Bar>
-          </BarChart>
+            </Pie>
+            <Tooltip content={<CustomTooltip />} />
+            <Legend
+              verticalAlign="bottom"
+              height={36}
+              iconType="circle"
+              wrapperStyle={{
+                paddingTop: "20px",
+                fontSize: "14px",
+                fontWeight: "600",
+              }}
+            />
+          </PieChart>
         </ResponsiveContainer>
       </div>
     </div>

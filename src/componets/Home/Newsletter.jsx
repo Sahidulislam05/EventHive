@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import Heading from "../Shared/heading/Heading";
 import Paragraph from "../Shared/heading/Paragraph";
@@ -16,17 +17,29 @@ const Newsletter = () => {
     <section className="bg-[#fafafa] py-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div className="max-w-xl">
+          <motion.div
+            className="max-w-xl"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <Heading className="text-5xl font-bold tracking-tight text-gray-900 mb-4">
               Subscribe to our newsletter
             </Heading>
             <Paragraph className="text-lg text-gray-600">
               Subscribe to our newsletter and never miss our latest news.
             </Paragraph>
-          </div>
+          </motion.div>
 
           {/* Right side - Form */}
-          <div className="w-full max-w-md">
+          <motion.div
+            className="w-full max-w-md"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Enter Your E-Mail Adress
             </label>
@@ -48,14 +61,16 @@ const Newsletter = () => {
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
               </div>
-              <button
+              <motion.button
                 type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className="rounded-full px-5 cursor-pointer font-bold bg-[#a3e635] text-black hover:bg-black hover:text-[#a3e635] transition-colors duration-300"
               >
                 Get started
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

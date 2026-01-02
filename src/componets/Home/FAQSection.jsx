@@ -36,11 +36,16 @@ const faqs = [
   },
 ];
 
-const FAQItem = ({ faq, isOpen, toggle }) => {
+const FAQItem = ({ faq, isOpen, toggle, index }) => {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       className="card bg-gray-100 border border-base-200 shadow-sm rounded-[1.5rem] overflow-hidden hover:border-base-300 transition-colors cursor-pointer"
       onClick={toggle}
+      whileHover={{ scale: 1.02 }}
     >
       <div className="px-8 py-5 flex items-center justify-between">
         <h3 className="text-lg md:text-xl font-bold text-secondary">
@@ -103,7 +108,7 @@ const FAQItem = ({ faq, isOpen, toggle }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
@@ -117,7 +122,13 @@ const FAQSection = () => {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="inline-block px-4 py-1.5 rounded-full border border-gray-200 bg-white text-sm font-medium text-gray-600 mb-6 shadow-sm">
             FAQ
           </div>
@@ -128,13 +139,14 @@ const FAQSection = () => {
             Everything you need to know about using EventHive. Can't find the
             answer you're looking for? Chat with our team.
           </Paragraph>
-        </div>
+        </motion.div>
 
         <div className="space-y-4">
-          {faqs.map((faq) => (
+          {faqs.map((faq, index) => (
             <FAQItem
               key={faq.id}
               faq={faq}
+              index={index}
               isOpen={openId === faq.id}
               toggle={() => toggleFAQ(faq.id)}
             />

@@ -76,113 +76,146 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-40">
-      {/* Heading */}
-      <div className="text-center mb-14">
-        <h1 className="text-3xl md:text-4xl lg:text-6xl text-secondary font-semibold">
-          Get in touch <br /> with us in seconds
-        </h1>
-        <p className="text-xl text-base-content mt-8">
-          Plan smarter. Host better. Join EventHive today.
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-lime-50 py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wide mb-6">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            Join EventHive
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4">
+            Get Started Today
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Plan smarter. Host better. Join EventHive and transform your events.
+          </p>
+        </div>
 
-      {/* Form Center Wrapper */}
-      <div className="flex justify-center">
-        <div className="card w-full max-w-xl shadow-2xl bg-base-300 p-10">
-          <div className="card-body">
-            <form onSubmit={handleSubmit(handleRegistration)}>
-              <fieldset className="fieldset">
+        {/* Form Center Wrapper */}
+        <div className="flex justify-center">
+          <div className="w-full max-w-xl bg-white rounded-3xl shadow-2xl border-2 border-gray-100 p-8 md:p-12 relative overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-400/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-lime-400/5 rounded-full blur-3xl"></div>
+            <div className="relative">
+              <form
+                onSubmit={handleSubmit(handleRegistration)}
+                className="space-y-5"
+              >
                 {/* Name */}
-                <label className="label text-base-content">Name</label>
-                <input
-                  type="text"
-                  {...register("name", { required: true })}
-                  className="input input-bordered w-full bg-base-100
-"
-                  placeholder="Your Name"
-                />
-                {errors.name && (
-                  <p className="text-red-500">Name is required</p>
-                )}
-
-                {/* Email */}
-                <label className="label text-base-content mt-2">Email</label>
-                <input
-                  type="email"
-                  {...register("email", { required: true })}
-                  className="input input-bordered w-full bg-base-100
-"
-                  placeholder="Your Email"
-                />
-                {errors.email && (
-                  <p className="text-red-500">Email is required</p>
-                )}
-
-                {/* Photo */}
-                <label className="label text-base-content mt-2">Photo</label>
-                <input
-                  type="file"
-                  {...register("photo", { required: true })}
-                  className="file-input file-input-bordered w-full bg-base-100
-"
-                />
-                {errors.photo && (
-                  <p className="text-red-500">Photo is required</p>
-                )}
-
-                {/* Password */}
-                <label className="label text-base-content mt-2">Password</label>
-                <div className="relative">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Full Name
+                  </label>
                   <input
-                    type={showPassword ? "text" : "password"}
-                    {...register("password", {
-                      required: true,
-                      minLength: 6,
-                      pattern: /^(?=.*[a-z])(?=.*[A-Z]).+$/,
-                    })}
-                    className="input input-bordered w-full bg-base-100
-"
-                    placeholder="Password"
+                    type="text"
+                    {...register("name", { required: true })}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-200 transition-all bg-gray-50 focus:bg-white"
+                    placeholder="John Doe"
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-5 top-2.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
+                  {errors.name && (
+                    <p className="text-red-500 text-sm mt-1 font-medium">
+                      Name is required
+                    </p>
+                  )}
                 </div>
 
-                {errors.password?.type === "required" && (
-                  <p className="text-red-500">Password is required</p>
-                )}
-                {errors.password?.type === "minLength" && (
-                  <p className="text-red-500">
-                    Password must be at least 6 characters
-                  </p>
-                )}
-                {errors.password?.type === "pattern" && (
-                  <p className="text-red-500">
-                    Password must be include uppercase, lowercase letters
-                  </p>
-                )}
+                {/* Email */}
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    {...register("email", { required: true })}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-200 transition-all bg-gray-50 focus:bg-white"
+                    placeholder="your.email@example.com"
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1 font-medium">
+                      Email is required
+                    </p>
+                  )}
+                </div>
 
-                <button className="btn btn-primary mt-6">Register</button>
-              </fieldset>
-            </form>
-            <SocialLogin></SocialLogin>
+                {/* Photo */}
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Profile Photo
+                  </label>
+                  <input
+                    type="file"
+                    {...register("photo", { required: true })}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-200 transition-all bg-gray-50 focus:bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 file:cursor-pointer"
+                  />
+                  {errors.photo && (
+                    <p className="text-red-500 text-sm mt-1 font-medium">
+                      Photo is required
+                    </p>
+                  )}
+                </div>
 
-            <p className="py-4 text-center">
-              Already have an account?{' '}
-              <Link
-                state={location?.state}
-                to="/login"
-                className="text-[#80ba21] underline"
-              >
-                Login
-              </Link>
-            </p>
+                {/* Password */}
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      {...register("password", {
+                        required: true,
+                        minLength: 6,
+                        pattern: /^(?=.*[a-z])(?=.*[A-Z]).+$/,
+                      })}
+                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-200 transition-all bg-gray-50 focus:bg-white"
+                      placeholder="Create a strong password"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-3.5 text-gray-400 hover:text-emerald-600 transition-colors"
+                    >
+                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                    </button>
+                  </div>
+
+                  {errors.password?.type === "required" && (
+                    <p className="text-red-500 text-sm mt-1 font-medium">
+                      Password is required
+                    </p>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <p className="text-red-500 text-sm mt-1 font-medium">
+                      Password must be at least 6 characters
+                    </p>
+                  )}
+                  {errors.password?.type === "pattern" && (
+                    <p className="text-red-500 text-sm mt-1 font-medium">
+                      Password must include uppercase and lowercase letters
+                    </p>
+                  )}
+                </div>
+
+                <button className="w-full py-3.5 px-6 bg-gradient-to-r from-emerald-500 to-lime-500 hover:from-emerald-600 hover:to-lime-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl mt-2">
+                  Create Account
+                </button>
+              </form>
+
+              <SocialLogin></SocialLogin>
+
+              <p className="text-center text-gray-600 mt-6">
+                Already have an account?{" "}
+                <Link
+                  state={location?.state}
+                  to="/login"
+                  className="text-emerald-600 font-bold hover:text-emerald-700 hover:underline transition-all"
+                >
+                  Login Here
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
