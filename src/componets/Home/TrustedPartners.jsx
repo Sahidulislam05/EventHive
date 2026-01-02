@@ -41,7 +41,16 @@ const TrustedPartners = () => {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <Paragraph className="text-[18px] mb-12">Trusted by Industry Leaders</Paragraph>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <Paragraph className="text-[18px] mb-12">
+            Trusted by Industry Leaders
+          </Paragraph>
+        </motion.div>
 
         <div
           className="relative w-full overflow-hidden"

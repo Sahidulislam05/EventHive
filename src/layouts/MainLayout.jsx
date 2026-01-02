@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../componets/Shared/Navbar";
 import Footer from "../componets/Shared/Footer";
 import { Outlet } from "react-router";
+import ScrollToTop from "../componets/Shared/ScrollToTop";
 
 const MainLayout = () => {
   return (
@@ -9,6 +10,7 @@ const MainLayout = () => {
       <Navbar />
       <div className="min-h-[calc(100vh-300px)]">
         <Outlet />
+        <ScrollToTop />
       </div>
       <Footer />
     </div>

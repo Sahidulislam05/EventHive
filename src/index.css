@@ -1,52 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
+
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
 
+
   /* Brand - Medusa Inspiration */
-  --color-primary: #A3E635;      /* Lime Green - Medusa Accent */
-  --color-primary-content: #1A1A1A; /* Dark Text on Lime */
-  --color-secondary: #1A1A1A;    /* Dark Gray/Black - Headings */
-  --color-accent: #ffffff;       /* White */
+  --color-primary: #A3E635;
+  /* Lime Green - Medusa Accent */
+  --color-primary-content: #1A1A1A;
+  /* Dark Text on Lime */
+  --color-secondary: #1A1A1A;
+  /* Dark Gray/Black - Headings */
+  --color-accent: #ffffff;
+  /* White */
 
   /* Backgrounds */
-  --color-base-100: #F1F1EF;     /* Medusa Warm Gray Background */
-  --color-base-200: #ffffff;     /* White Cards */
-  --color-base-300: #E5E5E5;     /* Soft Borders */
+  --color-base-100: #F1F1EF;
+  /* Medusa Warm Gray Background */
+  --color-base-200: #ffffff;
+  /* White Cards */
+  --color-base-300: #E5E5E5;
+  /* Soft Borders */
 
   /* Text */
-  --color-base-content: #1A1A1A; /* Main text (Dark) */
-  --color-base-content-secondary: #4D4D4D; /* Subtext */
+  --color-base-content: #1A1A1A;
+  /* Main text (Dark) */
+  --color-base-content-secondary: #4D4D4D;
+  /* Subtext */
 
   /* Status */
   --color-info: #60a5fa;
-  --color-success: #A3E635;      /* Match primary */
+  --color-success: #A3E635;
+  /* Match primary */
   --color-warning: #facc15;
   --color-error: #ef4444;
 
   /* Global Radius - Standardizing on Pill/Rounded */
-  --rounded-box: 1.5rem;         /* rounded-3xl */
-  --rounded-btn: 9999px;         /* rounded-full (Pill) */
+  --rounded-box: 1.5rem;
+  /* rounded-3xl */
+  --rounded-btn: 9999px;
+  /* rounded-full (Pill) */
 }
 
 @plugin "daisyui/theme" {
   name: "dark";
 
   /* Brand */
-  --color-primary: #A3E635;          /* Same lime */
-  --color-primary-content: #0F172A; /* Dark text on lime */
-  --color-secondary: #E5E7EB;        /* Light gray headings */
+  --color-primary: #A3E635;
+  /* Same lime */
+  --color-primary-content: #0F172A;
+  /* Dark text on lime */
+  --color-secondary: #E5E7EB;
+  /* Light gray headings */
   --color-accent: #1F2933;
 
   /* Backgrounds */
-  --color-base-100: #0F172A;         /* Main background (charcoal navy) */
-  --color-base-200: #111827;         /* Cards */
-  --color-base-300: #1F2933;         /* Borders / separators */
+  --color-base-100: #0F172A;
+  /* Main background (charcoal navy) */
+  --color-base-200: #111827;
+  /* Cards */
+  --color-base-300: #1F2933;
+  /* Borders / separators */
 
   /* Text */
-  --color-base-content: #E5E7EB;     /* Main text */
-  --color-base-content-secondary: #9CA3AF; /* Muted text */
+  --color-base-content: #E5E7EB;
+  /* Main text */
+  --color-base-content-secondary: #9CA3AF;
+  /* Muted text */
 
   /* Status */
   --color-info: #60A5FA;
@@ -60,14 +83,18 @@
 }
 
 
-/* Custom Base Styles for Typography */
 @layer base {
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Poppins", sans-serif;
     @apply text-base-content bg-white;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-extrabold tracking-tight text-secondary;
   }
 }
-

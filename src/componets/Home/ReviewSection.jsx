@@ -160,14 +160,20 @@ const ReviewSection = () => {
   return (
     <section className="py-15 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="inline-block px-4 py-1.5 rounded-full border border-gray-200 bg-white text-sm font-medium text-gray-600 mb-6 shadow-sm">
             Review
           </div>
           <Heading className="text-5xl md:text-6xl font-medium tracking-tight text-gray-900 mb-4">
             User comments <br /> about our Event
           </Heading>
-        </div>
+        </motion.div>
 
         {/* Row 1: Left to Right */}
         <div

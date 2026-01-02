@@ -1,6 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { Check, X, ShieldCheck, AlertCircle, Trash2 } from "lucide-react";
+import {
+  Check,
+  X,
+  ShieldCheck,
+  AlertCircle,
+  Trash2,
+  CalendarDays,
+} from "lucide-react";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 
 const ManageEvents = () => {
@@ -13,6 +20,8 @@ const ManageEvents = () => {
       return res.data;
     },
   });
+
+  // console.log(events);
 
   // Handle Delete
   const handleDelete = (event) => {
@@ -92,6 +101,9 @@ const ManageEvents = () => {
                 Title
               </th>
               <th className="px-8 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                Date
+              </th>
+              <th className="px-8 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
                 Organizer
               </th>
               <th className="px-8 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">
@@ -122,6 +134,13 @@ const ManageEvents = () => {
                   {event.title}
                 </td>
 
+                <td className="px-8 py-5 text-sm">
+                  <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg w-fit text-gray-700">
+                    <CalendarDays size={14} />
+                    {new Date(event.createdAt).toLocaleDateString()}
+                  </div>
+                </td>
+
                 <td className="px-8 py-5">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-lime-100 to-emerald-100 flex items-center justify-center text-lime-700 font-bold text-sm">
@@ -137,7 +156,7 @@ const ManageEvents = () => {
                   <div className="flex items-center justify-end gap-3">
                     <button
                       onClick={() => handleDelete(event)}
-                      className="p-2.5 text-red-700 bg-red-100 rounded-xl hover:bg-red-200 transition-colors"
+                      className="p-2.5 text-red-700 bg-red-100 rounded-xl hover:bg-red-200 cursor-pointer transition-colors"
                       title="Delete Event"
                     >
                       <Trash2 size={18} />
